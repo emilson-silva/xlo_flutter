@@ -30,12 +30,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 border: OutlineInputBorder(),
                 hintText: 'Exemplo: João S.',
               ),
-              validator: (text){
-                if(text.length <6)
-                  return 'Apelido muito curto';
+              validator: (text) {
+                if (text.length < 6) return 'Apelido muito curto';
                 return null;
               },
             ),
+            SizedBox(height: 26.0),
             FieldTitle(
               title: 'E-mail',
               subtitle: 'Enviaremos um e-mail de confirmação',
@@ -44,12 +44,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
               ),
-              validator: (text){
-                if(text.length <6 || !text.contains('@'))
+              validator: (text) {
+                if (text.length < 6 || !text.contains('@'))
                   return 'E-mail inválido';
                 return null;
               },
             ),
+            SizedBox(height: 26.0),
             FieldTitle(
               title: 'Senha',
               subtitle: 'Use Letras, números e caracteres especiais',
