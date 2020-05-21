@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/screens/signup/widgets/field_Title.dart';
+import 'package:xlo/screens/signup/widgets/password_field.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -55,6 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               title: 'Senha',
               subtitle: 'Use Letras, números e caracteres especiais',
             ),
+            PasswordField(),
           ],
         ),
       ),
