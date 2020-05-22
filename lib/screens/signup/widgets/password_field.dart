@@ -6,14 +6,21 @@ class PasswordField extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField<String>(
       initialValue: '',
+      validator: (text){
+        if(text.isEmpty || _calcScore(text) < 4)
+          return ' Senha inválida';
+        return null;
+      },
       builder: (state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(border: OutlineInputBorder()),
               obscureText: true,
               onChanged: state.didChange,
             ),
+            if(state.value.isEmpty)
             Container(
               margin: EdgeInsets.only(top: 6.0),
               height: 8.0,
@@ -24,6 +31,17 @@ class PasswordField extends StatelessWidget {
                   _buildBar(2, state.value),
                   _buildBar(3, state.value),
                 ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 6.0, left: 10.0),
+              child: Text(
+                _getText(_calcScore(state.value)),
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: _getColor(_calcScore(state.value)),
+                  fontSize: 12.0,
+                ),
               ),
             ),
           ],
@@ -38,12 +56,11 @@ class PasswordField extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 2.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(5.0),
-          ),
-          color: n <= level ? _getColor(level) : Colors.transparent,
-          border: n > level ? Border.all(color: Colors.grey) : null
-        ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(5.0),
+            ),
+            color: n <= level ? _getColor(level) : Colors.transparent,
+            border: n > level ? Border.all(color: Colors.grey) : null),
       ),
     );
   }
@@ -57,7 +74,7 @@ class PasswordField extends StatelessWidget {
   }
 
   Color _getColor(int level) {
-    switch (level){
+    switch (level) {
       case 0:
         return Colors.red;
       case 1:
@@ -68,6 +85,21 @@ class PasswordField extends StatelessWidget {
         return Colors.green;
       default:
         return Colors.red;
+    }
+  }
+
+  String _getText(int level) {
+    switch (level) {
+      case 0:
+        return 'Senha muito fraca';
+      case 1:
+        return 'Senha razoalvemente fraca';
+      case 2:
+        return 'Senha Razoalvemente forte';
+      case 3:
+        return 'Senha forte ';
+      default:
+        return '';
     }
   }
 }
