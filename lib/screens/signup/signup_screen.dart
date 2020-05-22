@@ -3,6 +3,8 @@ import 'package:xlo/screens/signup/widgets/field_Title.dart';
 import 'package:xlo/screens/signup/widgets/password_field.dart';
 
 class SignUpScreen extends StatefulWidget {
+
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -56,7 +58,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               title: 'Senha',
               subtitle: 'Use Letras, números e caracteres especiais',
             ),
-            PasswordField(),
+            PasswordField(
+              onSaved: (text){
+
+              }
+            ),
           ],
         ),
       ),
