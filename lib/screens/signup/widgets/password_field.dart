@@ -3,11 +3,11 @@ import 'package:flutter/widgets.dart';
 
 class PasswordField extends StatelessWidget {
   PasswordField({this.onSaved});
+
   final FormFieldSetter<String> onSaved;
 
   @override
   Widget build(BuildContext context) {
-
     Widget _buildBar(int n, String pass) {
       final int level = _calcScore(pass);
       return Expanded(
@@ -27,21 +27,21 @@ class PasswordField extends StatelessWidget {
       initialValue: '',
       onSaved: onSaved,
       validator: (text) {
-        if (text.isEmpty || _calcScore(text) < 2)
-          return ' Senha inválida';
+        if (text.isEmpty || _calcScore(text) < 2) return 'Senha inválida';
         return null;
       },
-      autovalidate: true,
       builder: (state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             TextField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+              ),
               obscureText: true,
               onChanged: state.didChange,
             ),
-            if(state.value.isEmpty)
+            if (state.value.isEmpty)
               Container(
                 margin: EdgeInsets.only(top: 6.0),
                 height: 8.0,
@@ -56,15 +56,18 @@ class PasswordField extends StatelessWidget {
               ),
             Padding(
               padding: EdgeInsets.only(top: 6.0, left: 10.0),
-              child: state.value.isNotEmpty || state.hasError ?
-              Text(
-                state.value.isNotEmpty ? _getText(_calcScore(state.value)) : state.errorText,
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: _getColor(_calcScore(state.value)),
-                  fontSize: 12.0,
-                ),
-              ) : Container(),
+              child: state.value.isNotEmpty || state.hasError
+                  ? Text(
+                      state.value.isNotEmpty
+                          ? _getText(_calcScore(state.value))
+                          : state.errorText,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: _getColor(_calcScore(state.value)),
+                        fontSize: 12.0,
+                      ),
+                    )
+                  : Container(),
             ),
           ],
         );

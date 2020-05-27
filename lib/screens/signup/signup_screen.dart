@@ -63,6 +63,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               }
             ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 24.0),
+            )
           ],
         ),
       ),
