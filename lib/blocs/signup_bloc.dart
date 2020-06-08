@@ -13,6 +13,8 @@ class SignUpBloc {
   final BehaviorSubject<SignUpBloState> _stateController =
       BehaviorSubject<SignUpBloState>.seeded(SignUpBloState(SignUpState.IDLE));
 
+  Stream<SignUpBloState> get outState => _stateController.stream;
+
   void dispose() {
     _stateController.close();
   }
