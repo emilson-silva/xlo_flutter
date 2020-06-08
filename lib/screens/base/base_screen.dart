@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/home_screen.dart';
 
+import 'file:///C:/Users/emilson.silva/Desktop/barcode/xlo_flutter/lib/screens/create/create_screen.dart';
+
 class BaseScreen extends StatefulWidget {
   @override
   _BaseScreenState createState() => _BaseScreenState();
@@ -26,9 +28,9 @@ class _BaseScreenState extends State<BaseScreen> {
 
       _drawerSubscription?.cancel();
       _drawerSubscription = _drawerBloc.outPage.listen((page) {
-        try{
+        try {
           _pageController.jumpToPage(page);
-        }catch (e){}
+        } catch (e) {}
       });
     }
   }
@@ -47,7 +49,7 @@ class _BaseScreenState extends State<BaseScreen> {
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[
           HomeScreen(),
-          Container(color: Colors.blue),
+          CreateScreen(),
           Container(color: Colors.green),
           Container(color: Colors.amber),
           Container(color: Colors.black),
