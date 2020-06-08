@@ -3,8 +3,6 @@ import 'package:xlo/screens/signup/widgets/field_Title.dart';
 import 'package:xlo/screens/signup/widgets/password_field.dart';
 
 class SignUpScreen extends StatefulWidget {
-
-
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -58,17 +56,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
               title: 'Senha',
               subtitle: 'Use Letras, números e caracteres especiais',
             ),
-            PasswordField(
-              onSaved: (text){
-
-              }
-            ),
+            PasswordField(onSaved: (text) {}),
             Container(
               margin: EdgeInsets.symmetric(vertical: 24.0),
+              height: 50.0,
+              child: RaisedButton(
+                color: Colors.pink,
+                child: Text(
+                  'Cadastre-se',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                onPressed: _signUp,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  void _signUp() {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+    }
   }
 }
