@@ -28,6 +28,7 @@ class ImagesField extends StatelessWidget {
                             backgroundColor: Colors.grey[300],
                             radius: 52,
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Icon(
                                   Icons.camera_alt,
