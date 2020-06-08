@@ -3,22 +3,41 @@ import 'package:xlo/models/user.dart';
 
 enum SignUpState { IDLE, LOADING, ERROR }
 
-class SignUpBloState {
-  SignUpBloState(this.state, {this.errorMessage});
+class SignUpBlocState {
+  SignUpBlocState(this.state, {this.errorMessage});
 
   SignUpState state;
   String errorMessage;
 }
 
 class SignUpBloc {
-  final BehaviorSubject<SignUpBloState> _stateController =
-      BehaviorSubject<SignUpBloState>.seeded(SignUpBloState(SignUpState.IDLE));
+  final BehaviorSubject<SignUpBlocState> _stateController =
+      BehaviorSubject<SignUpBlocState>.seeded(
+          SignUpBlocState(SignUpState.IDLE));
 
-  Stream<SignUpBloState> get outState => _stateController.stream;
+  Stream<SignUpBlocState> get outState => _stateController.stream;
 
   User user = User();
 
-  set name(String name) => user.name = name;
+  void signUp() async {
+    _stateController.add(SignUpBlocState(SignUpState.LOADING));
+
+    await Future.delayed(Duration(seconds: 3));
+
+    _stateController.add(SignUpBlocState(SignUpState.IDLE));
+  }
+
+  void setName(String name) {
+    user.name = name;
+  }
+
+  void setEmail(String email) {
+    user.email = email.toLowerCase();
+  }
+
+  void setPassword(String password) {
+    user.password = password;
+  }
 
   void dispose() {
     _stateController.close();
