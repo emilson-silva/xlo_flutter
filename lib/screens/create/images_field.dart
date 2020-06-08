@@ -4,6 +4,7 @@ class ImagesField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormField<List>(
+      initialValue: [],
       builder: (state) {
         return Column(
           children: <Widget>[
