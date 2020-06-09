@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:xlo/blocs/drawer_bloc.dart';
 import 'package:xlo/home_screen.dart';
 
-import 'file:///C:/Users/emilson.silva/Desktop/barcode/xlo_flutter/lib/screens/create/create_screen.dart';
+import 'package:xlo/screens/create/create_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   @override

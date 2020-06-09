@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
-import 'package:xlo/screens/create/images_field.dart';
+import 'package:xlo/screens/create/widget/images_field.dart';
 
 class CreateScreen extends StatefulWidget {
   @override
