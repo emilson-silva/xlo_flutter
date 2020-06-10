@@ -86,6 +86,9 @@ class _CreateScreenState extends State<CreateScreen> {
                   return 'Utilize valores válidos';
                 return null;
               },
+              onSaved: (price){
+                
+              },
             ),
             Container(
               height: 50.0,
