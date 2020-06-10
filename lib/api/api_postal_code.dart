@@ -25,7 +25,8 @@ Future<ApiResponse> getAddressFromAPI(String postalCode) async {
       postalCode: response.data['cep'],
       federativeUnit: response.data['uf'],
     );
-    print(address);
+
+    return ApiResponse.success(result: address);
   } on DioError catch (e) {
     return ApiResponse.error(
       error: ApiError(
