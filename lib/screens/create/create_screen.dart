@@ -2,6 +2,7 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:xlo/api/api_postal_code.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
 import 'package:xlo/screens/create/widget/images_field.dart';
 
@@ -103,6 +104,8 @@ class _CreateScreenState extends State<CreateScreen> {
                   ),
                 ),
                 onPressed: () {
+                  getAddressFromApi('postalCode');
+                  
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                   }
