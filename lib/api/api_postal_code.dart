@@ -9,8 +9,7 @@ Future<ApiResponse> getAddressFromAPI(String postalCode) async {
 
   try {
     final Response response = await Dio().get<Map>(endpoint);
-
-    if (response.data.constainsKey('erro') && response.data['erro']) {
+    if (response.data.containsKey('erro') && response.data['erro']) {
       return ApiResponse.error(
         error: ApiError(
           code: -1,

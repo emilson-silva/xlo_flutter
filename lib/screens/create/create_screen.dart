@@ -81,15 +81,13 @@ class _CreateScreenState extends State<CreateScreen> {
                 WhitelistingTextInputFormatter.digitsOnly,
                 RealInputFormatter(centavos: true),
               ],
-              validator: (text){
+              validator: (text) {
                 if (text.trim().isEmpty) return 'Campo obrigatório';
                 if (double.tryParse(text) == null)
                   return 'Utilize valores válidos';
                 return null;
               },
-              onSaved: (price){
-                
-              },
+              onSaved: (price) {},
             ),
             Container(
               height: 50.0,
@@ -104,8 +102,8 @@ class _CreateScreenState extends State<CreateScreen> {
                   ),
                 ),
                 onPressed: () {
-                  getAddressFromAPI('74.340-290');
-                  
+                  getAddressFromAPI('74.810-180');
+
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
                   }
