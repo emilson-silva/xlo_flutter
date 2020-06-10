@@ -33,6 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: Form(
         key: _formKey,
+
         child: StreamBuilder<SignUpBlocState>(
             stream: _signUpBloc.outState,
             builder: (context, snapshot) {

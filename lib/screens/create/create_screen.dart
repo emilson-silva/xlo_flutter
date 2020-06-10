@@ -104,7 +104,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   ),
                 ),
                 onPressed: () {
-                  getAddressFromApi('postalCode');
+                  getAddressFromAPI('74.340-290');
                   
                   if (_formKey.currentState.validate()) {
                     _formKey.currentState.save();
