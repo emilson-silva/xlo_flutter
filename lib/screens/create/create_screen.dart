@@ -1,4 +1,7 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
 import 'package:xlo/screens/create/widget/images_field.dart';
 
@@ -53,14 +56,35 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 contentPadding: EdgeInsets.fromLTRB(16, 10, 12, 10),
               ),
-              validator: (text){
-                if(text.trim().isEmpty) return 'Campo obrigatório';
-                if(text.trim().length < 10)
-                  return 'Descrição muito curta';
+              validator: (text) {
+                if (text.trim().isEmpty) return 'Campo obrigatório';
+                if (text.trim().length < 10) return 'Descrição muito curta';
                 return null;
               },
-              onSaved: (d){
-
+              onSaved: (d) {},
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Preço *',
+                labelStyle: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    color: Colors.grey,
+                    fontSize: 18.0),
+                contentPadding: EdgeInsets.fromLTRB(16, 10, 12, 10),
+              ),
+              keyboardType: TextInputType.numberWithOptions(
+                decimal: true,
+                signed: false,
+              ),
+              inputFormatters: [
+                WhitelistingTextInputFormatter.digitsOnly,
+                RealInputFormatter(centavos: true),
+              ],
+              validator: (text){
+                if (text.trim().isEmpty) return 'Campo obrigatório';
+                if (double.tryParse(text) == null)
+                  return 'Utilize valores válidos';
+                return null;
               },
             ),
             Container(
