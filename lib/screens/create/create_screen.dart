@@ -26,6 +26,43 @@ class _CreateScreenState extends State<CreateScreen> {
               onSaved: (images) {},
               initialValue: [],
             ),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: 'Título *',
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.grey,
+                  fontSize: 18,
+                ),
+                contentPadding: EdgeInsets.fromLTRB(16, 10, 12, 10),
+              ),
+              validator: (text) {
+                if (text.isEmpty) return 'Campo obrigatório';
+                return null;
+              },
+              onSaved: (t) {},
+            ),
+            TextFormField(
+              maxLines: null,
+              decoration: InputDecoration(
+                labelText: 'Descrição *',
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.grey,
+                  fontSize: 18.0,
+                ),
+                contentPadding: EdgeInsets.fromLTRB(16, 10, 12, 10),
+              ),
+              validator: (text){
+                if(text.trim().isEmpty) return 'Campo obrigatório';
+                if(text.trim().length < 10)
+                  return 'Descrição muito curta';
+                return null;
+              },
+              onSaved: (d){
+
+              },
+            ),
             Container(
               height: 50.0,
               child: RaisedButton(
