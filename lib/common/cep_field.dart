@@ -16,7 +16,6 @@ class CepField extends StatefulWidget {
 
 class _CepFieldState extends State<CepField> {
   InputDecoration get decoration => widget.decoration;
-
   FormFieldSetter<Address> get onSaved => widget.onSaved;
 
   CepBloc cepBloc;
@@ -52,7 +51,7 @@ class _CepFieldState extends State<CepField> {
                 CepInputFormatter(),
               ],
               onSaved: (c) {
-                onSaved(Address());
+                onSaved(snapshot.data.address);
               },
               onChanged: cepBloc.onChange,
               validator: (c) {
@@ -108,5 +107,6 @@ class _CepFieldState extends State<CepField> {
           ),
         );
     }
+    return Container();
   }
 }

@@ -18,10 +18,14 @@ class CepBlocState {
 }
 
 class CepBloc {
+  CepBloc() {
+    onChange('');
+  }
+
   final BehaviorSubject<CepBlocState> _cepController =
       BehaviorSubject<CepBlocState>();
 
-  Stream<CepBlocState> get outCep => _cepController;
+  Stream<CepBlocState> get outCep => _cepController.stream;
 
   void searchCep(String cep) async {
     final ApiResponse apiResponse = await getAddressFromAPI(cep);
