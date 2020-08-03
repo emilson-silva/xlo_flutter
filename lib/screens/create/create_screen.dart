@@ -74,7 +74,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     fontSize: 18.0),
                 contentPadding: EdgeInsets.fromLTRB(16, 10, 12, 10),
               ),
-              onSaved: (c) {},
+              onSaved: (a) {},
             ),
             TextFormField(
               decoration: InputDecoration(
