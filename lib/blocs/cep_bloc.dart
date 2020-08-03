@@ -21,6 +21,8 @@ class CepBloc {
   final BehaviorSubject<CepBlocState> _cepController =
       BehaviorSubject<CepBlocState>();
 
+  Stream<CepBlocState> get outCep => _cepController;
+
   void searchCep(String cep) async {
     final ApiResponse apiResponse = await getAddressFromAPI(cep);
     if (apiResponse.success) {
@@ -52,5 +54,9 @@ class CepBloc {
     } else {
       searchCep(cep);
     }
+  }
+
+  void dispose() {
+    _cepController.close();
   }
 }
