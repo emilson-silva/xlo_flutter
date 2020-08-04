@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:xlo/blocs/home_bloc.dart';
 import 'package:xlo/common/custom_drawer/custom_drawer.dart';
+import 'package:xlo/models/ad.dart';
+import 'package:xlo/screens/home/widget/product_tile.dart';
 import 'package:xlo/screens/home/widget/top_bar.dart';
 import 'package:xlo/search_dialog.dart';
 
@@ -11,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   HomeBloc _homeBloc;
 
   @override
@@ -19,8 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.didChangeDependencies();
 
     final HomeBloc homeBloc = Provider.of<HomeBloc>(context);
-    if(homeBloc != _homeBloc)
-      _homeBloc = homeBloc;
+    if (homeBloc != _homeBloc) _homeBloc = homeBloc;
   }
 
   @override
@@ -30,60 +30,71 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) => SearchDialog(currentSearch: currentSearch),
       );
-      if(search != null)
-        _homeBloc.setSearch(search);
+      if (search != null) _homeBloc.setSearch(search);
     }
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: StreamBuilder<String>(
-          stream: _homeBloc.outSearch,
-          initialData: '',
-          builder: (context, snapshot){
-            if(snapshot.data.isEmpty)
-              return Container();
-            else
-              return GestureDetector(
-                onTap: () => _openSearch(snapshot.data),
-                child: LayoutBuilder(
-                  builder: (context, constraints){
-                     return Container(
-                       child:  Text(snapshot.data),
-                       width: constraints.biggest.width,
-                     );
-                  },
-                ),
-              );
-          }
-        ),
+            stream: _homeBloc.outSearch,
+            initialData: '',
+            builder: (context, snapshot) {
+              if (snapshot.data.isEmpty)
+                return Container();
+              else
+                return GestureDetector(
+                  onTap: () => _openSearch(snapshot.data),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return Container(
+                        child: Text(snapshot.data),
+                        width: constraints.biggest.width,
+                      );
+                    },
+                  ),
+                );
+            }),
         actions: <Widget>[
-         StreamBuilder<String>(
-           stream: _homeBloc.outSearch,
-           initialData: '',
-           builder: (context, snapshot){
-             if(snapshot.data.isEmpty)
-               return  IconButton(
-                 icon: Icon(Icons.search),
-                 onPressed: () {
-                   _openSearch('');
-                 },
-               );
-             else
-               return  IconButton(
-                 icon: Icon(Icons.close),
-                 onPressed: () {
-                   _homeBloc.setSearch('');
-                 },
-               );
-           },
-         )
+          StreamBuilder<String>(
+            stream: _homeBloc.outSearch,
+            initialData: '',
+            builder: (context, snapshot) {
+              if (snapshot.data.isEmpty)
+                return IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    _openSearch('');
+                  },
+                );
+              else
+                return IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    _homeBloc.setSearch('');
+                  },
+                );
+            },
+          )
         ],
       ),
       drawer: CustomDrawer(),
       body: Column(
         children: <Widget>[
           TopBar(),
+          Expanded(
+            child: StreamBuilder<List<Ad>>(
+              stream: _homeBloc.outAd,
+              builder: (context, snapshot) {
+                return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    return ProductTile(snapshot.data[index]);
+                  },
+                );
+              },
+            ),
+          )
         ],
       ),
     );
