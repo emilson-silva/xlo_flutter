@@ -9,12 +9,15 @@ class CreateBloc {
 
   Stream<CreateState> get outState => _stateController.stream;
 
-  saveAd(Ad ad) async {
+  Future<bool> saveAd(Ad ad) async {
     _stateController.add(CreateState.LOADING);
 
     //mandar o ad para o repositorio
 
     await Future.delayed(Duration(seconds: 3));
+
+    _stateController.add(CreateState.DONE);
+    return true;
   }
 
   void dispose() {
