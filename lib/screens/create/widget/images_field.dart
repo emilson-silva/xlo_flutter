@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:xlo/screens/create/widget/image_source_sheet.dart';
 
 class ImagesField extends StatelessWidget {
-  ImagesField({this.initialValue,this.onSaved});
+  ImagesField({this.initialValue, this.onSaved});
 
   final FormFieldSetter<List> onSaved;
   final List initialValue;
@@ -13,9 +13,8 @@ class ImagesField extends StatelessWidget {
     return FormField<List>(
       initialValue: initialValue,
       onSaved: onSaved,
-      validator: (images){
-        if(images.isEmpty)
-          return 'Campo obrigatório';
+      validator: (images) {
+        if (images.isEmpty) return 'Campo obrigatório';
         return null;
       },
       builder: (state) {
@@ -102,7 +101,9 @@ class ImagesField extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         radius: 52.0,
-                        backgroundImage: FileImage(state.value[index]),
+                        backgroundImage: FileImage(
+                          state.value[index],
+                        ),
                       ),
                     ),
                   );
@@ -111,7 +112,7 @@ class ImagesField extends StatelessWidget {
             ),
             if (state.hasError)
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 alignment: Alignment.centerLeft,
                 child: Text(
                   state.errorText,
