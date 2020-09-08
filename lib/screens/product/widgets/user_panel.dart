@@ -22,14 +22,13 @@ class UserPanel extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(16.0),
           color: Colors.grey[200],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
                 'Emilson',
-                textDirection: TextDirection.ltr,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
