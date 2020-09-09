@@ -11,6 +11,7 @@ class AccountScreen extends StatelessWidget {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             height: 180.0,
@@ -25,6 +26,11 @@ class AccountScreen extends StatelessWidget {
                 fontSize: 20.0,
               ),
             ),
+          ),
+          ListTile(
+            title: Text('Meus anúncios'),
+            trailing: Icon(Icons.keyboard_arrow_right),
+            onTap: () {},
           )
         ],
       ),
